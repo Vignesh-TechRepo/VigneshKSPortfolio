@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vignesh Komarapalayam Selvan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff6600;
+            --bg: #0a0a0a;
+            --text: #fff;
+            --section-bg: #18181b;
+            --shadow: rgba(0,0,0,0.32);
+        }
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: var(--bg);
+            margin: 0;
+            color: var(--text);
+            transition: background 0.4s, color 0.4s;
+        }
+        body.dark {
+            --primary: #8b5cf6;
+            --bg: #18181b;
+            --text: #f3f4f6;
+            --section-bg: #232336;
+            --shadow: rgba(0,0,0,0.32);
+        }
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+            background: var(--bg);
+            padding: 0;
+            position: relative;
+        }
+        .hero-content {
+            max-width: 700px;
+            z-index: 2;
+            margin-left: 8vw;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            justify-content: center;
+            height: 100vh;
+        }
+        .hero-greeting {
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+            background: rgba(255,102,0,0.08);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 6px;
+        }
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin: 0 0 18px 0;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #e0e0e0;
+            margin-bottom: 36px;
+            font-weight: 400;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 18px;
+        }
+        .hero-btn {
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: #fff;
+            color: var(--primary);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid var(--primary);
+        }
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+        .hero-photo {
+            height: 100vh;
+            width: auto;
+            max-width: 50vw;
+            min-width: 340px;
+            object-fit: cover;
+            border-radius: 24px 0 0 24px;
+            margin: 0;
+            z-index: 2;
+            border: none;
+            box-shadow: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            /* Soft fade on left and bottom using a radial gradient */
+            -webkit-mask-image: radial-gradient(ellipse at 0% 100%, transparent 0%, black 40%, black 100%);
+            mask-image: radial-gradient(ellipse at 0% 100%, transparent 0%, black 40%, black 100%);
+        }
+        .parallax-header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background: linear-gradient(120deg, var(--primary) 0%, #4f46e5 100%);
+            min-height: 260px;
+            box-shadow: 0 2px 16px var(--shadow);
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            padding: 0 0 0 0;
+        }
+        .parallax-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://www.transparenttextures.com/patterns/diamond-upholstery.png');
+            opacity: 0.08;
+            z-index: 0;
+        }
+        .profile-photo {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 8px solid #e5e7eb;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            background: #e0e7ff;
+            margin-left: 48px;
+            margin-right: 36px;
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+            margin-top: 32px;
+            margin-bottom: 32px;
+        }
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 1;
+        }
+        .parallax-header h1 {
+            margin: 0;
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+        .parallax-header p {
+            color: #e0e7ff;
+            font-size: 1.2rem;
+            margin: 10px 0 0 0;
+            font-weight: 500;
+        }
+        .dark .profile-photo {
+            border: 8px solid #232336;
+            background: #232336;
+        }
+        .dark .parallax-header {
+            color: #fff;
+        }
+        .dark .parallax-header::before {
+            opacity: 0.12;
+        }
+        .toggle-dark {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: #fff;
+            font-size: 1.3rem;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            z-index: 2;
+            transition: background 0.3s;
+        }
+        .toggle-dark:hover {
+            background: rgba(0,0,0,0.12);
+        }
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .section {
+            width: 100vw;
+            margin: 30px 0;
+            padding: 0;
+            box-sizing: border-box;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px var(--shadow);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 28px 32px;
+        }
+        .section.reverse {
+            flex-direction: row-reverse;
+        }
+        .section.parallax {
+            background: linear-gradient(120deg, #e0e7ff 0%, #f5f6fa 100%);
+            box-shadow: 0 8px 32px var(--shadow);
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+        .dark .section.parallax {
+            background: linear-gradient(120deg, #232336 0%, #18181b 100%);
+        }
+        .section-content {
+            flex: 1 1 400px;
+            min-width: 320px;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+        .section-desc {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 24px;
+        }
+        .dark .section-desc {
+            color: #bbb;
+        }
+        .section-gallery {
+            flex: 1 1 400px;
+            min-width: 320px;
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .gallery-img {
+            width: 320px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(99,102,241,0.10);
+            background: #e0e7ff;
+            margin-bottom: 10px;
+        }
+        .gallery-caption {
+            text-align: center;
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 18px;
+        }
+        .dark .gallery-caption {
+            color: #eee;
+        }
+        .badges-section {
+            background: linear-gradient(120deg, rgba(40,40,50,0.85) 0%, rgba(24,24,27,0.95) 100%);
+            border-radius: 24px;
+            box-shadow: 0 4px 24px var(--shadow);
+            margin: 60px 0;
+            padding: 40px 32px;
+            margin-left: 8vw;
+            width: calc(100vw - 16px);
+            max-width: 1200px;
+            min-width: 320px;
+        }
+        .badges-title {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .badges-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: center;
+            margin-top: 18px;
+        }
+        .badge-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 120px;
+            background: none;
+            box-shadow: none;
+            border-radius: 0;
+        }
+        .badge-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 0;
+            background: none;
+            box-shadow: none;
+            margin-bottom: 8px;
+        }
+        .badge-title {
+            font-size: 0.95rem;
+            color: #eceaea;
+            text-align: center;
+        }
+        .dark .badge-title {
+            color: #eee;
+        }
+        .contact-section, .personal-section, .resume-section {
+            background: linear-gradient(120deg, rgba(40,40,50,0.85) 0%, rgba(24,24,27,0.95) 100%);
+            border-radius: 24px;
+            box-shadow: 0 4px 24px var(--shadow);
+            margin: 60px 0;
+            padding: 40px 32px;
+            margin-left: 8vw;
+            width: calc(100vw - 16vw);
+            max-width: 1200px;
+            min-width: 320px;
+        }
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: center;
+            margin-top: 18px;
+        }
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+            font-size: 1.1rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .contact-link:hover {
+            color: #22223b;
+        }
+        .dark .contact-link:hover {
+            color: #fff;
+        }
+        .personal-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        .personal-list li {
+            margin-bottom: 10px;
+        }
+        .dark .personal-list {
+            color: #bbb;
+        }
+        .resume-download {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+        }
+        .resume-download a {
+            background: var(--primary);
+            color: #fff;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 2px 8px var(--shadow);
+            transition: background 0.2s;
+        }
+        .resume-download a:hover {
+            background: #22223b;
+        }
+        footer {
+            background: var(--section-bg);
+            color: var(--primary);
+            text-align: center;
+            padding: 24px 0 16px 0;
+            margin-top: 80px;
+            font-size: 1rem;
+            box-shadow: 0 -2px 16px var(--shadow);
+        }
+        @media (max-width: 900px) {
+            .section,
+            .personal-section,
+            .badges-section,
+            .resume-section,
+            .testimonial-section,
+            .mywork-section {
+                max-width: 100vw;
+                margin: 18px 0;
+                padding: 14px 4vw;
+                border-radius: 16px;
+            }
+            .projects-list {
+                gap: 18px;
+            }
+            .project-card {
+                padding: 16px 10px;
+                min-width: 0;
+            }
+            .skills-grid {
+                gap: 10px;
+            }
+            .badge-item {
+                width: 90px;
+            }
+            .badge-img {
+                width: 60px;
+                height: 60px;
+            }
+            .hero-section {
+                flex-direction: row;
+                align-items: flex-start;
+                min-height: auto;
+            }
+            .hero-content {
+                width: 48vw;
+                max-width: 48vw;
+                padding: 18px 0 18px 4vw;
+                margin-left: 0;
+                height: auto;
+            }
+            .hero-photo {
+                width: 52vw;
+                max-width: 52vw;
+                min-width: 0;
+                height: 260px;
+                object-fit: cover;
+                border-radius: 0 16px 16px 0;
+                position: static;
+            }
+            .project-filters {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 0 2vw;
+            }
+            .filter-btn {
+                padding: 8px 12px;
+                font-size: 0.95rem;
+            }
+            .section-header,
+            .badges-title,
+            .testimonial-title {
+                font-size: 1.2rem;
+            }
+            .project-title {
+                font-size: 1.05rem;
+            }
+            .project-tools {
+                font-size: 0.95rem;
+            }
+            .about-text,
+            .project-summary,
+            .project-roles,
+            .project-roles li {
+                font-size: 0.95rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .hero-content {
+                width: 40vw;
+                max-width: 40vw;
+                padding-left: 2vw;
+                padding-right: 2vw;
+            }
+            .hero-photo {
+                width: 60vw;
+                max-width: 60vw;
+                height: 220px;
+            }
+        }
+        .testimonial-section {
+            background: linear-gradient(120deg, rgba(40,40,50,0.85) 0%, rgba(24,24,27,0.95) 100%);
+            border-radius: 24px;
+            box-shadow: 0 4px 24px var(--shadow);
+            margin: 60px 0;
+            padding: 40px 32px;
+            margin-left: 8vw;
+            width: calc(100vw - 16vw);
+            max-width: 1200px;
+            min-width: 320px;
+            overflow: hidden;
+        }
+        .testimonial-title {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 24px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .testimonial-carousel {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+        .testimonial-track {
+            display: flex;
+            gap: 32px;
+            animation: scrollTestimonials 30s linear infinite;
+            will-change: transform;
+        }
+        @keyframes scrollTestimonials {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .testimonial-card {
+            background: rgba(40, 40, 50, 0.25); /* semi-transparent */
+            color: #fff;
+            border-radius: 18px;
+            box-shadow: 0 2px 16px 0 rgba(0,0,0,0.18);
+            min-width: 320px;
+            max-width: 320px;
+            padding: 24px 20px 16px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            backdrop-filter: blur(8px); /* glass effect */
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.18);
+        }
+        .testimonial-text {
+            font-size: 0.95rem;
+            margin-bottom: 18px;
+            color: #eceaea;
+            font-style: italic;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .testimonial-photo {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+        }
+        .testimonial-name {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .testimonial-role {
+            font-size: 0.95rem;
+            color: #bbb;
+        }
+        .testimonial-carousel:hover .testimonial-track {
+            animation-play-state: paused;
+        }
+        .section-header {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-header::before {
+            content: '';
+            display: inline-block;
+            width: 32px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 18px;
+        }
+        .skill-card {
+            background: rgba(40,40,50,0.18);
+            border-radius: 12px;
+            padding: 16px 22px;
+            color: #eceaea;
+            font-size: 1.05rem;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.10);
+            min-width: 180px;
+            flex: 1 1 180px;
+            text-align: center;
+        }
+        .personal-section,
+        .badges-section,
+        .resume-section,
+        .testimonial-section,
+        .mywork-section {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 28px 28px;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px var(--shadow);
+        }
+        .skills-marquee-container {
+            width: 100vw;
+            margin: 32px 0 0 0;
+            overflow: hidden;
+            /* Optional: add a subtle divider or shadow */
+        }
+        .skills-marquee {
+            width: 100%;
+            overflow: hidden;
+            background: none;
+            padding: 0;
+        }
+        .skills-track {
+            display: flex;
+            gap: 48px;
+            animation: scrollSkills 40s linear infinite;
+            white-space: nowrap;
+            align-items: center;
+        }
+        .skills-track span {
+            color: #f3f4f6;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            padding: 0 12px;
+            display: inline-block;
+            /* Optional: add a subtle background or border-radius for each skill */
+            /* background: rgba(255,255,255,0.04); border-radius: 8px; */
+        }
+        @keyframes scrollSkills {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        /* Responsive: reduce gap and font size on small screens */
+        @media (max-width: 600px) {
+            .skills-track {
+                gap: 24px;
+            }
+            .skills-track span {
+                font-size: 0.95rem;
+                padding: 0 6px;
+            }
+        }
+        .about-text, .personal-list, .personal-list li {
+            color: #f3f4f6 !important;
+            font-size: 1.1rem;
+        }
+        /*.mywork-section {
+            background: linear-gradient(120deg, rgba(40,40,50,0.85) 0%, rgba(24,24,27,0.95) 100%);
+            border-radius: 24px;
+            box-shadow: 0 4px 24px var(--shadow);
+            margin: 30px auto;
+            padding: 28px 28px;
+            margin-left: 8vw;
+            max-width: 1200px;
+            min-width: 320px;
+        }*/
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            margin-top: 24px;
+        }
+        .project-card { 
+            background: rgba(40,40,50,0.18);
+            border-radius: 16px;
+            padding: 24px 28px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            color: #f3f4f6;
+            transition: box-shadow 0.2s;
+        }
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .project-tools {
+            font-style: italic;
+            color: #bbb;
+            margin-bottom: 10px;
+        }
+        .project-summary {
+            margin-bottom: 10px;
+            color: #eceaea;
+        }
+        .project-roles {
+            margin: 0;
+            padding-left: 18px;
+            color: #f3f4f6;
+            font-size: 1.05rem;
+        }
+        .project-roles li {
+            margin-bottom: 6px;
+        }
+        .detail-header {
+            font-weight: bold;
+            color: var(--primary);
+            margin-right: 6px;
+        }
+        .personal-list li {
+            font-weight: normal;
+            color: #f3f4f6;
+        }
+        .about-me-hero {
+            font-style: italic;
+            font-size: 0.98rem; /* or 0.95rem for even smaller */
+            color: #e0e0e0;
+            margin-top: 10px;
+            margin-bottom: 0;
+            background: none;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+        }
+        .section-header {
+            margin-bottom: 4px;
+            margin-top: 0;
+        }
+        .about-text,
+        .skills-grid,
+        .badges-gallery,
+        .projects-list,
+        ul.personal-list {
+            margin-bottom: 12px !important;
+            margin-top: 0 !important;
+        }
+        /* Awards section: smaller font and box */
+        .personal-section .skills-grid .skill-card {
+            font-size: 0.95rem;
+            padding: 10px 14px;
+            min-width: 120px;
+            min-height: 20px;
+            line-height: 1.2;
+        }
+        .project-filters {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 24px;
+            margin-top: 12px;
+            justify-content: left;
+        }
+        .filter-btn {
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 600;
+            padding: 10px 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .filter-btn.active,
+        .filter-btn:focus {
+            background: var(--primary);
+            color: #18181b;
+            outline: none;
+        }
+        @media (max-width: 600px) {
+            .section-header,
+            .badges-title,
+            .testimonial-title {
+                font-size: 1.2rem;
+            }
+            .project-title {
+                font-size: 1.05rem;
+            }
+            .project-tools {
+                font-size: 0.95rem;
+            }
+            .about-text,
+            .project-summary,
+            .project-roles,
+            .project-roles li {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="hero-greeting">Hello, I am</div>
+            <div class="hero-title">Vignesh Komarapalayam Selvan</div>
+            <div class="hero-subtitle">Associate Manager - EY<br>Techno-Functional Consultant</div>
+            <div class="hero-buttons">
+                <!-- <a href="resume.pdf" download class="hero-btn btn-primary">Download CV</a> -->
+                <a href="#mywork" class="hero-btn btn-primary">My Work</a>
+            </div>
+            <div class="contact-links" style="justify-content: flex-start; margin-top: 18px;">
+                <a class="contact-link" href="https://www.linkedin.com/in/vignesh-k-s-5b17a550" target="_blank">🔗 LinkedIn</a>
+                <a class="contact-link" href="https://www.credly.com/users/vignesh-komarapalayam-selvan.29ab634a" target="_blank">🔗 Credly</a>
+                <a class="contact-link" href="tel:+919884130081">📱 +91 98841 30081</a>
+                <a class="contact-link" href="mailto:vigneshks93@outlook.com">✉️ Email</a>
+            </div>
+            
+        </div>
+        <img class="hero-photo" src="profile-photo.png" alt="Profile Photo">
+    </section>
+
+    <div class="skills-marquee-container">
+        <div class="skills-marquee">
+            <div class="skills-track">
+                <span>Core Banking, Wealth Management</span>
+                <span>Power BI (PowerQuery, DAX, Data Modelling, Visualization)</span>
+                <span>Power Platform (Low-Code Development)</span>
+                <span>Alteryx (Data Transformation, Data Modelling)</span>
+                <span>SQL, Database, PL/SQL, dbeaver</span>
+                <span>JAVA, Python, VBA</span>
+                <span>Business Intelligence & Insights, Data Analysis & Visualization</span>
+                <span>Quality Engineering, Automation Testing</span>
+                <span>Product development, Product Management, Agile</span>
+                <span>Project Management, Stakeholder Management</span>
+                <span>Jira, ALM, qTest, ADO</span>
+                <span>Requirement Analysis</span>
+                <span>Problem Solving</span>
+                
+                <!-- Repeat for seamless scroll -->
+                <span>Core Banking, Wealth Management</span>
+                <span>Power BI (PowerQuery, DAX, Data Modelling, Visualization)</span>
+                <span>Power Platform (Low-Code Development)</span>
+                <span>Alteryx (Data Transformation, Data Modelling)</span>
+                <span>SQL, Database, PL/SQL, dbeaver</span>
+                <span>JAVA, Python, VBA</span>
+                <span>Business Intelligence & Insights, Data Analysis & Visualization</span>
+                <span>Quality Engineering, Automation Testing</span>
+                <span>Product development, Product Management, Agile</span>
+                <span>Project Management, Stakeholder Management</span>
+                <span>Jira, ALM, qTest, ADO</span>
+                <span>Requirement Analysis</span>
+                <span>Problem Solving</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="personal-section">
+        <h2 class="section-header">About Me</h2>
+        <p class="about-text">
+            Microsoft-certified technology consultant with 10+ years of techno-functional expertise across Financial Services, Business Intelligence, NCLC, and Quality Engineering. Highly skilled in Power BI, Alteryx, Power Platform, and automation testing, with a proven track record in Agile delivery, stakeholder collaboration, and driving data-led decision-making across financial domains. Passionate about leveraging technology to optimize processes, enhance analytics, and create scalable solutions that empower businesses.
+        </p>
+    </section>
+
+    <section class="personal-section">
+        <h2 class="section-header">Awards</h2>
+        <div class="skills-grid">
+            <div class="skill-card">🏆 Best Performer, EY (2025)</div>
+            <div class="skill-card">🌍 Onshore Recognition, EY (2024)</div>
+            <div class="skill-card">💡 Pursuing Innovation, EY (2023)</div>
+            <div class="skill-card">⭐ Exceptional Client Service, EY (2022, 2023)</div>
+            <div class="skill-card">🎯 Service Strategy, Maveric Systems (2017)</div>
+        </div>
+    </section>
+
+    <section class="badges-section">
+        <div class="badges-title">Badges & Certifications</div>
+        <div class="badges-gallery">
+            <div class="badge-item">
+                <img class="badge-img" src="badges/powerbi.png" alt="Power BI Data Analyst Associate">
+                <div class="badge-title">Power BI Data Analyst Associate (Microsoft)</div>
+            </div>
+            <div class="badge-item">
+                <img class="badge-img" src="badges/alteryx.png" alt="Alteryx Designer Core">
+                <div class="badge-title">Alteryx Designer Core (Alteryx)</div>
+            </div>
+            <div class="badge-item">
+                <img class="badge-img" src="badges/gold-medal.png" alt="Gold Badge on Data Visualisation">
+                <div class="badge-title">Gold Badge on Data Visualisation (EY)</div>
+            </div>
+            <div class="badge-item">
+                <img class="badge-img" src="badges/agilebadge.png" alt="Silver Badge on Agile">
+                <div class="badge-title">Silver Badge on Agile (EY)</div>
+            </div>
+            <div class="badge-item">
+                <img class="badge-img" src="badges/ppfundamentals.png" alt="Power Platform Fundamentals">
+                <div class="badge-title">Power Platform Fundamentals (Microsoft)</div>
+            </div>
+            <div class="badge-item">
+                <img class="badge-img" src="badges/istqbctfl.png" alt="ISTQB CTFL">
+                <div class="badge-title">ISTQB CTFL (ITB)</div>
+            </div>
+            <div class="badge-item">
+                <img class="badge-img" src="badges/istqbai.png" alt="ISTQB AI">
+                <div class="badge-title">ISTQB AI (ITB)</div>
+            </div>
+        </div>
+        <p style="text-align:center; margin-top:10px;">
+            <a href="https://www.credly.com/users/vignesh-komarapalayam-selvan.29ab634a" target="_blank" style="color:var(--primary);font-weight:600;">See all badges on Credly</a>
+        </p>
+    </section>
+
+    <main>
+        <!-- Commented out portfolio sections -->
+        <!--
+        <section class="section parallax">
+            <div class="section-content">
+                <div class="section-title">Power BI Dashboards</div>
+                <div class="section-desc">Interactive and insightful dashboards for business intelligence and analytics. Explore my best Power BI work below.</div>
+            </div>
+            <div class="section-gallery">
+                <div>
+                    <img class="gallery-img" src="..." alt="Power BI Dashboard Mockup">
+                    <div class="gallery-caption">Sales Analytics Dashboard</div>
+                </div>
+                <div>
+                    <img class="gallery-img" src="..." alt="Power BI Dashboard Mockup">
+                    <div class="gallery-caption">Customer Segmentation</div>
+                </div>
+            </div>
+        </section>
+        <section class="section reverse parallax">
+            <div class="section-content">
+                <div class="section-title">Alteryx Workflows</div>
+                <div class="section-desc">Automated workflows for data cleansing, ETL, and advanced analytics using Alteryx. See how I streamline data processes.</div>
+            </div>
+            <div class="section-gallery">
+                <div>
+                    <img class="gallery-img" src="..." alt="Alteryx Workflow Mockup">
+                    <div class="gallery-caption">Data Cleansing Workflow</div>
+                </div>
+                <div>
+                    <img class="gallery-img" src="..." alt="Alteryx Workflow Mockup">
+                    <div class="gallery-caption">ETL Automation</div>
+                </div>
+            </div>
+        </section>
+        <section class="section parallax">
+            <div class="section-content">
+                <div class="section-title">Power Platform Apps</div>
+                <div class="section-desc">Custom business applications built with Microsoft Power Platform to automate and enhance business processes.</div>
+            </div>
+            <div class="section-gallery">
+                <div>
+                    <img class="gallery-img" src="..." alt="Power Platform App Mockup">
+                    <div class="gallery-caption">Expense Tracker App</div>
+                </div>
+                <div>
+                    <img class="gallery-img" src="..." alt="Power Platform App Mockup">
+                    <div class="gallery-caption">Employee Onboarding</div>
+                </div>
+            </div>
+        </section>
+        <section class="section reverse parallax">
+            <div class="section-content">
+                <div class="section-title">AI Agents (MS Copilot)</div>
+                <div class="section-desc">AI-powered agents and copilots built using Microsoft Copilot for automation, support, and business insights.</div>
+            </div>
+            <div class="section-gallery">
+                <div>
+                    <img class="gallery-img" src="..." alt="AI Agent Mockup">
+                    <div class="gallery-caption">Customer Support Bot</div>
+                </div>
+                <div>
+                    <img class="gallery-img" src="..." alt="AI Agent Mockup">
+                    <div class="gallery-caption">Sales Assistant Copilot</div>
+                </div>
+            </div>
+        </section>
+        -->
+    </main>
+
+    <section class="mywork-section" id="mywork">
+        <h2 class="section-header">My Work</h2>
+        <div class="project-filters">
+            <button class="filter-btn active" data-domain="all">All</button>
+            <button class="filter-btn" data-domain="qa">Quality Assurance</button>
+            <button class="filter-btn" data-domain="business">Business Intelligence</button>            
+            <button class="filter-btn" data-domain="power">Power Platform</button>
+            <button class="filter-btn" data-domain="ai">Artificial Intelligence</button>
+        </div>
+        <div class="projects-list">
+            <div class="project-card" data-domain="business">
+                <div class="project-title">ROPE - Resource Overall Performance Evaluator</div>
+                <div class="project-tools">Power BI, Power App, DAX, Sharepoint, PowerQuery</div>
+                <div class="project-summary"> 
+                Designed and implemented a structured performance evaluation framework utilizing Power Apps and Power BI. Developed a logic-driven scoring model based on weighted pillars and quantifiable metrics, ensuring objective assessments. Automated data processing to generate individual performance scores, enabling stack ranking and data-driven recommendations aligned with predefined bell curve distributions. Enhanced transparency, efficiency, and fairness in resource evaluation through a streamlined, technology-driven approach.                </div>
+                <ul class="project-roles">
+                    <li>Developed a structured performance evaluation framework integrating Power Apps and Power BI</li>
+                    <li>Managed the entire project lifecycle, from initial design to final implementation with 3 member team</li>
+                    <li>Streamlined data entry, processing, and performance ranking through automated workflows</li>
+                    <li>Designed Power BI dashboards for real-time insights, facilitating managerial decision-making</li>
+                    <li>Worked closely with Leaders and teams to define evaluation parameters and ensure alignment with business goals.</li>
+                    <li>Conducted refinements and enhancements to improve accuracy, fairness, and efficiency in evaluations</li>
+                    <li>Implemented Row Level Security to ensure data privacy and security</li>
+                </ul>
+            </div>
+            
+            <div class="project-card" data-domain="business">
+                <div class="project-title">AIR Financial Dashboard & TIPS</div>
+                <div class="project-tools">Power BI, Sharepoint, DAX, PowerQuery, Power Apps, ADO, Power Automate</div>
+                <div class="project-summary">   
+                Led the design and implementation of an AIR Financial dashboard.</div>
+                <ul class="project-roles">
+                    <li>Leading an offshore team of 5 people for Dossier Development, responsible for the preparation of Development Strategy, Development Plan, Project artifacts and deliverables.</li>
+                    <li>Leading the development of AIR Integrated Business Analysis Dashboard which provides detailed Financial and Delivery Analysis of Engagements and help leaders to understand the Commercial/Delivery - status, monitoring, progress, and risks at any point of time</li>
+                    <li>Conducted advanced analytics to identify Commercial opportunities and strengths to meet business goals</li>
+                    <li>Performed Data Cleansing, Data Transformation, and harmonization to maintain the Data quality and Presented and Communicated business insights in an actionable way for business leaders from 2+ lakh engagements</li>
+                    <li>Implemented Scoring logics and calculation to build Four Quadrant Analysis to distribute engagements based on the performance and for users to easily understand the factors contributing to the score</li>
+                    <li>Worked with Cross Functional business and technical teams to identify and integrate appropriate data sources, extract data, and develop integrated reports</li>
+                    <li>Responsible for the Code versioning, collaboration, and maintenance in GitHub for TIPS and deployment in Dev, UAT and Prod environments</li>
+                </ul>
+            </div>
+
+            <div class="project-card" data-domain="business">
+                <div class="project-title">RTO Dashboard</div>
+                <div class="project-tools">Power BI, Sharepoint, DAX, PowerQuery</div>
+                <div class="project-summary">   
+                Led the design and implementation of an RTO compliance monitoring dashboard using Power BI. The dashboard consolidates swipe-in data across office locations and compares it against predefined expected office days for each role, rank, and project status. A logic-driven reconciliation system, built in Power Query, evaluates total RTO days against required minimums while factoring in approved remote work requests. The solution provides a clear compliance status for each resource, supporting organizational goals for office attendance tracking and adherence to RTO policies.</div>
+                <ul class="project-roles">
+                    <li>Designed and led the implementation of the RTO dashboard, aligning with organizational return-to-office objectives.</li>
+                    <li>Developed Power Query logic to consolidate swipe-in records, expected office days, and approved remote work requests</li>
+                    <li>Built a rule-based model to assess adherence against predefined thresholds, ensuring accurate compliance reporting</li>
+                    <li>Created interactive Power BI dashboards for leadership insights, tracking trends and office attendance patterns</li>
+                    <li>Collaborated with business leaders and talent teams to refine compliance logic and ensure alignment with company policies</li>
+                    <li>Continuously refined the system to improve accuracy, automate reconciliations, and enhance data-driven decision-making</li>
+                </ul>
+            </div>
+            
+
+            <div class="project-card" data-domain="business">
+                <div class="project-title">Dossier 360</div>
+                <div class="project-tools">Power BI, Power Automate, SharePoint, MS Access, Excel, PL/SQL, Power Apps</div>
+                <div class="project-summary">   
+                Led the design and implementation of an RTO compliance monitoring dashboard using Power BI. The dashboard consolidates swipe-in data across office locations and compares it against predefined expected office days for each role, rank, and project status. A logic-driven reconciliation system, built in Power Query, evaluates total RTO days against required minimums while factoring in approved remote work requests. The solution provides a clear compliance status for each resource, supporting organizational goals for office attendance tracking and adherence to RTO policies.</div>
+                <ul class="project-roles">
+                    <li>Responsible for the creation of Dossier 360 – a business analysis report to provide 360' view of operational metrics to the Stakeholders</li>
+                    <li>Integrated Utilization, Engagement, Talent, L&D and RTO data from various operational reports after data cleansing and transformation</li>
+                    <li>Responsible for the preparation of Design document and access document for all the tools being prepared</li>
+                    <li>Implemented scheduled refresh daily to provide up-to-date information for the stakeholders</li>
+                    <li>Compiled business insights into presentable visuals and trend analysis with recommendations to improve the utilization and bench management</li>
+                    <li>Reviewed the report with Competency leaders on a weekly basis and presented the data to the wide group of stakeholders on Cadence call</li>
+                </ul>
+            </div>
+
+            <div class="project-card" data-domain="qa">
+                <div class="project-title">Risk Monitoring & Supervision</div>
+                <div class="project-tools">Wealth Management, Alteryx, Agile, dbeaver, SQL</div>
+                <div class="project-summary">   </div>
+        
+                <ul class="project-roles">
+                    <li>Leading a team of 4 for Risk Monitoring & Supervision module and is responsible for the delivery for a leading wealth management firm in US</li>
+                    <li>Stepped into the team during a critical phase, understood the application, connected with business stakeholders and worked on action items to retain the trust from the stakeholders</li>
+                    <li>Managed to complete all the backlog items in a month and earned the trust back from the stakeholders</li>
+                    <li>Worked with Product team to identify multiple requirement gaps in the application and has also logged multiple critical bugs</li>
+                    <li>Developed a solution using Alteryx workflows for breach validation which saves 95% of the time compared to manual solution</li>
+                    <li>Represented UAT during offsite event in New Jersey and demoed the workflows and automation suite that was created which has received great feedback from the business and stakeholders</li>
+                    
+                </ul>
+            </div>
+
+            <div class="project-card" data-domain="qa">
+                <div class="project-title">Office of Business Management & Financial Advisor Platforms</div>
+                <div class="project-tools">Wealth Management, Agile, Jira, Agile Requirement Designer</div>
+                <div class="project-summary">   </div>
+        
+                <ul class="project-roles">
+                    <li>Leading an offshore UAT team of 5 people for FA Compensation module, responsible for the preparation of test strategy, test plan, project artifacts and deliverables</li>
+                    <li>Responsible for the offshore productivity, daily and weekly reporting and preparation of capacity plan for the team for every release</li>
+                    <li>Created Automation scripts for Financial workstream scenarios using QTP</li>
+                    <li>SPOC for the preparation and reviewing of CMMI Audit artifacts for 3D Financial Advisor Platform and FA Compensation modules</li>
+                    <li>Taking part in Agile ceremonies and being vocal about the on-going activities and hinderance</li>
+                    <li>Preparing effective test design/test case with Agile Requirement Designer with maximum coverage and less than 5% of review effort</li>
+                    <li>Performing UAT test execution for SCR, Analytics Hub and Action hub modules in HP-ALM</li>
+                    <li>Preparation and execution of automation Java test scripts as part of Regression in LeanFT and IntelliJ using TestNG and FAST framework</li>
+                    <li>Reported 95% of valid defects in non-Prod environments and maintained zero percentage of defect slippage ratio in Prod</li>
+                    <li>Preparing test closure reports, performing production checkout with Product owner for every release and providing sign off to Stakeholders</li>
+                    
+                </ul>
+            </div>
+
+
+            <div class="project-card" data-domain="qa">
+                <div class="project-title">Bank Albilad</div>
+                <div class="project-tools">T24 R16, Cortex, TFS, SMS Gateway, Retail Mobile Banking, Digital Banking, Internet Banking, PL-SQL, Putty</div>
+                <div class="project-summary">  </div> 
+        
+                <ul class="project-roles">
+                     <li>Analyzing the CR document and Interacting with BA and business team for any clarifications</li>
+                     <li>Being responsible for the development and support of Brand-New Omni Channel Mobile Application by taking part in user story analysis, Sprint planning and testing</li>
+                     <li>Being responsible for the implementation of Phase-I Digital Banking Project (Open Account Digitally)</li>
+                     <li>Being part of Automation team, created scripts for Web based applications in C# using Coded UI tool</li>
+                     <li>Test scenario preparation based on the CR. Giving test case walk through to Business owner and getting it approved</li>
+                     <li>Carrying out System Integration Testing and User Acceptance Testing for change request on various modules and sub functions like Trade Finance, Investment Banking, Internet Banking, Mobile Banking, Fortress Upgrade, Payments and Loans in both Manual and Automation</li>
+                     <li>Defect reporting, Retesting and follow ups with development team</li>
+                     <li>Getting approval from Business Team and moving the CR to production release</li>
+                     <li>Tested VAT implementation on Bank Services specific to the channels Retail Mobile Banking and Internet Banking as regulated by SAMA</li>
+                     <li>Expert in investigating the source of issues and defects through middleware logs analysis</li>
+                    
+                </ul>
+            </div>
+
+
+            <div class="project-card" data-domain="qa">
+                <div class="project-title">Citi G2C & RBS</div>
+                <div class="project-tools">Maianframe, Eclipse, Teradata, HP ALM</div>
+                <div class="project-summary">  </div> 
+        
+                <ul class="project-roles">
+                    <li>Participated in requirement gathering and analysis for the end-to-end lifecycle testing of Advanced Lending System and Transaction Monitoring (AML)</li>
+                    <li>Dealt with preparation of high-level test conditions, navigational scripts; review of test cases, scenarios and traceability matrix and preparation of run schedule and test data</li>
+                    <li>Performed End to End testing on Loan origination process in SIT</li>
+                    <li>Executed and had been a POC for Skip Payments and Loan Amortization schedule functionality in UAT</li>
+                    <li>Managed defects in ALM; defect triage met with project stakeholder's daily</li>
+                    <li>Responsible for MIS reporting and Status updating as part of scrum calls</li>
+                    <li>Performed regression testing bug fix release and Daily status reporting, defect management with the Scrum teams spread across Singapore, US and Mexico</li>
+                    <li>Supported for Defect management activities and also provided UAT support for the business users</li>
+                    <li>Worked extensively on SQL queries for EDW testing</li>
+                </ul>
+            </div>
+
+
+           
+            <div class="project-card" data-domain="power">
+                <div class="project-title">CREATE & Community of Practitioners</div>
+                <div class="project-tools">Power Platform, Sharepoint</div>
+                <div class="project-summary">  </div> 
+        
+                <ul class="project-roles">
+                    <li>Established and currently lead the CREATE team focused on Power Platform adoption.</li>
+        <li>Identified and trained resources, growing the team to 10+ members specializing in Power Platform.</li>
+
+        <li>ssigned Power Platform activities to team members based on skill sets and project requirements.</li>
+        <li>Oversaw end-to-end delivery management, ensuring timely execution and quality assurance.</li>
+
+        <li>Implemented best practices for development, governance, and automation within Power Platform projects.</li>
+        <li>Facilitated continuous improvement initiatives to refine workflows and enhance team efficiency.</li>
+
+        <li>Provided hands-on mentorship and technical guidance to team members.</li>
+        <li>Conducted regular knowledge-sharing sessions to keep the team updated with Power Platform advancements.</li>
+  
+        <li>Conceptualized and executed the Community of Practitioners training program for Power Platform.</li>
+        <li>Identified skilled professionals across various competencies and trained them in Power Platform tools.</li>
+
+        <li>Designed an internal project to provide real-world experience for trainees.</li>
+        <li>Led evaluations and feedback sessions to assess participants' learning progress and skill development.</li>
+
+        <li>Built cross-functional collaboration by engaging professionals from diverse technical domains.</li>
+        <li>Strengthened Power Platform adoption across competencies by expanding organizational awareness.</li>
+                </ul>
+            </div>
+
+            <div class="project-card" data-domain="power">
+                <div class="project-title">WFH Request Tool</div>
+                <div class="project-tools">Power App, UI Design, Power BI, Power Automate, Sharepoint</div>
+                <div class="project-summary">  </div> 
+        
+                <ul class="project-roles">
+                    <li>Built a comprehensive WFH request and approval system using Power Apps.</li>
+                    <li>Architected a multi-level approval workflow integrated with Power Automate.</li>
+            
+                    <li>Maintained and improved the app over 3+ years, implementing new features.</li>
+                    <li>Integrated the latest Power Platform capabilities, including Approval Flows.</li>
+            
+                    <li>Automated approval notifications, reducing manual follow-ups.</li>
+                    <li>Enhanced user experience with customized form validation and dynamic approval logic.</li>
+            
+                    <li>Worked closely with HR, Managers, and IT teams to refine approval flows.</li>
+            
+                    <li>Implemented role-based access control (RBAC) to protect sensitive data.</li>
+                    <li>Ensured compliance with company policies through audit tracking.</li>
+            
+                    <li>Created Power BI dashboards for tracking WFH requests, approval trends, and usage statistics.</li>
+                    <li>Provided insights to leadership for decision-making on remote work policies.</li>
+                </ul>
+            </div>
+
+
+            <div class="project-card" data-domain="ai">
+                <div class="project-title">AI Agents for SDLC - POC</div>
+                <div class="project-tools">MS CoPilot Studio, Power Automate, Power App</div>
+                <div class="project-summary">  </div> 
+        
+                <ul class="project-roles">
+                    <li>Developed AI agents using MS Copilot Studio to automate test case generation, feature files, and test scripts without manual intervention from ADO.</li>
+                    <li>Integrated automation capabilities to streamline the SDLC process, reducing effort and enhancing accuracy.</li>
+            
+                    <li>Designed and built an AI-powered application that enables users to automate test case creation and execution using Generative AI.</li>
+                    <li>Implemented intuitive UI for seamless interaction and enhanced usability.</li>
+            
+                    <li>Established initiatives to advocate Gen AI capabilities and build foundational skills within the competency.</li>
+                    <li>Collaborated with teams to drive AI adoption and enhance technical expertise in AI-driven solutions.</li>
+            
+                    <li>Developed validation mechanisms to assess AI-generated test outcomes using various industry standards.</li>
+                    <li>Ensured alignment with best practices and quality benchmarks for reliable automation solutions.</li>
+            
+                    <li>Enhanced AI agent contextualization by incorporating domain-specific intelligence.</li>
+                    <li>Refined agents to improve relevance and applicability within specialized business functions.</li>
+                </ul>
+            </div>
+
+
+
+
+
+        </div>
+    </section>
+
+   
+    <section class="testimonial-section">   
+        <h2 class="testimonial-title">Testimonials & Recommendations</h2>
+        <div class="testimonial-carousel">
+            <div class="testimonial-track">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Vignesh's strong financial knowledge was invaluable in understanding complex workflows and ensuring the accuracy of our data. Beyond his technical skills, he was a pleasure to work with—collaborative, detail-oriented, and always eager to solve complex challenges. He would be a great asset to any team."
+                    </p>
+                    <div class="testimonial-author">
+                        <div>
+                            <div class="testimonial-name">Steven McGugan</div>
+                            <div class="testimonial-role">Client</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "One of Vignesh's greatest strengths is his ability to collaborate effectively with cross-functional teams. He excels in communicating complex issues clearly and providing constructive feedback, which has been crucial in improving our products and processes.  In addition to his technical skills, he is a pleasure to work with. He consistently demonstrates a positive attitude, a willingness to learn, and a strong work ethic. He always goes above and beyond to ensure that our projects are delivered on time and meet the highest quality standards."
+                    </p>
+                    <div class="testimonial-author">
+                        <div>
+                            <div class="testimonial-name">Sheikh Elahi-Siddiqui</div>
+                            <div class="testimonial-role">Client</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Vignesh is a very skilled individual, has an eager to automate processes and a thirst to learn more."
+                    </p>
+                    <div class="testimonial-author">
+                        <div>
+                            <div class="testimonial-name">Ramya Mothiram</div>
+                            <div class="testimonial-role">Client</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Having known and work with Vignesh over the last years in a variety of situations, I can say with confidence that he is a conscientious, strong thinker that will strive for consensus among the people he works with"
+                    </p>
+                    <div class="testimonial-author">
+                        <div>
+                            <div class="testimonial-name">Majdi Oathman</div>
+                            <div class="testimonial-role">Client</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<section class="personal-section">
+        <h2 class="section-header">Personal Details</h2>
+        <ul class="personal-list">
+            <li><span class="detail-header">Location:</span> Chennai, India</li>
+            <li><span class="detail-header">Experience:</span> 10+ years</li>
+            <li><span class="detail-header">Education:</span> EPGP, Loyola Institute of Business Administration; B.E., Anna University</li>
+            <li><span class="detail-header">Hobbies:</span> Photography, Cooking</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 My Portfolio. All rights reserved.</p>
+    </footer>
+    <script>
+        // Parallax effect for header and sections
+        function parallaxScroll() {
+            const header = document.getElementById('parallax-header');
+            if (!header) return;
+            let offset = window.scrollY;
+            header.style.backgroundPosition = 'center ' + (offset * 0.3) + 'px';
+            document.querySelectorAll('.section.parallax').forEach((section, i) => {
+                section.style.backgroundPosition = 'center ' + ((offset - section.offsetTop) * 0.2) + 'px';
+            });
+        }
+        window.addEventListener('scroll', parallaxScroll);
+        // Dark mode toggle
+        // const toggleBtn = document.getElementById('toggle-dark');
+        // const body = document.body;
+        // if (toggleBtn) {
+        //     toggleBtn.onclick = function() {
+        //         body.classList.toggle('dark');
+        //         if(body.classList.contains('dark')) {
+        //             localStorage.setItem('theme', 'dark');
+        //             toggleBtn.textContent = '☀️';
+        //         } else {
+        //             localStorage.setItem('theme', 'light');
+        //             toggleBtn.textContent = '🌙';
+        //         }
+        //     };
+        //     // Load theme from localStorage
+        //     if(localStorage.getItem('theme') === 'dark') {
+        //         body.classList.add('dark');
+        //         toggleBtn.textContent = '☀️';
+        //     }
+        // }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    const domain = this.getAttribute('data-domain');
+                    document.querySelectorAll('.project-card').forEach(card => {
+                        if (domain === 'all' || card.getAttribute('data-domain') === domain) {
+                            card.style.display = '';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>
